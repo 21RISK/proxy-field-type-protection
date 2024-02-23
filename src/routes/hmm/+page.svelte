@@ -8,7 +8,7 @@
   </script>
   
 
-  <FormCmptAge {form} field="age"/>  <!-- Expects a number -->
-  <FormCmptAge {form} field="name"/> <!-- Expects a number - but this is a string! -->
-
   <FormCmptName {form} field="name"/>
+  <FormCmptAge {form} field="age"/>  
+  <FormCmptAge {form} field="homePlanet"/> 
+
