@@ -1,14 +1,24 @@
 <script lang="ts">
-    import { superForm } from 'sveltekit-superforms';
-	  import FormCmptAge from './form-cmpt-age.svelte';
-    import FormCmptName from './form-cmpt-name.svelte';
-  
+    import { superForm } from 'sveltekit-superforms';  
+
     export let data;
     const form = superForm(data.form);
+
+    async function formShouldBeInvalid() {
+      const body = new FormData();
+      const response = await fetch('?/testStrict', {
+        method: 'POST',
+        body,
+      });
+      
+      console.log('Response ok is', response.ok);
+
+      const asText = await response.text();
+      console.log(`Response as text: `, asText);
+    }
   </script>
   
 
-  <FormCmptAge {form} field="age"/>  <!-- Expects a number -->
-  <FormCmptAge {form} field="name"/> <!-- Expects a number - but this is a string! -->
+  <button on:click={formShouldBeInvalid}>Test validation</button>
 
-  <FormCmptName {form} field="name"/>
+
