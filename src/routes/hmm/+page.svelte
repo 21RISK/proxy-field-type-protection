@@ -1,14 +1,18 @@
 <script lang="ts">
-    import { superForm } from 'sveltekit-superforms';
-	  import FormCmptAge from './form-cmpt-age.svelte';
-    import FormCmptName from './form-cmpt-name.svelte';
-  
-    export let data;
-    const form = superForm(data.form);
+  import { defaults, formFieldProxy, superForm } from 'sveltekit-superforms';
+	import { userSchema } from './schema.js';
+	import { zod } from 'sveltekit-superforms/adapters';
+
+	
+    const formData = defaults(
+      /**
+       * Undefined should not be allowed here.
+      */
+        { name: 'First name', lastName: undefined },
+        zod(userSchema)
+    )
+
+   
   </script>
+
   
-
-  <FormCmptAge {form} field="age"/>  <!-- Expects a number -->
-  <FormCmptAge {form} field="name"/> <!-- Expects a number - but this is a string! -->
-
-  <FormCmptName {form} field="name"/>
