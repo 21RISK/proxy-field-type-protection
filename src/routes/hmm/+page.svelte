@@ -4,11 +4,17 @@
     import FormCmptName from './form-cmpt-name.svelte';
   
     export let data;
-    const form = superForm(data.form);
+    const spF = superForm(data.form);
+
+    const {form} = spF;
+
+    
   </script>
   
 
-  <FormCmptAge {form} field="age"/>  <!-- Expects a number -->
-  <FormCmptAge {form} field="name"/> <!-- Expects a number - but this is a string! -->
+  <form method="POST">
+    <input type="text" bind:value={$form.name} name="name"/>
+    <input type="number" bind:value={$form.age} name="age"/>
 
-  <FormCmptName {form} field="name"/>
+    <button>Submit</button>
+  </form>
