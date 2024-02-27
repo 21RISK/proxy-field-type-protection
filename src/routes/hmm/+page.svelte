@@ -2,7 +2,7 @@
   import { defaults, formFieldProxy, superForm } from 'sveltekit-superforms';
 	import { userSchema } from './schema.js';
 	import { zod } from 'sveltekit-superforms/adapters';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { get } from 'svelte/store';
 	  
 
@@ -21,8 +21,9 @@
 
     const fieldProxy = formFieldProxy(spForm, 'name');
 
-    onMount(() => {
+    onMount(async () => {
       fieldProxy.value.set(undefined as any);
+      await tick();
       console.log('In-memory data', get(spForm.form)); // <== Compare to onSubmit
       spForm.submit();
     });
