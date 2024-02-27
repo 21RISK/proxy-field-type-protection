@@ -13,6 +13,7 @@
     )
 
    
+    console.log(formData.data);
   </script>
 
   
