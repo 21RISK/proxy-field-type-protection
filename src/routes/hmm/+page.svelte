@@ -25,7 +25,9 @@
       fieldProxy.value.set(undefined as any);
       await tick();
       console.log('In-memory data', get(spForm.form)); // <== Compare to onSubmit
-      spForm.submit();
+      setTimeout(() => {
+        spForm.submit();
+      }, 100)
     });
   </script>
   
