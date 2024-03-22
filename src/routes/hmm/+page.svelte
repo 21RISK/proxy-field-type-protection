@@ -8,9 +8,23 @@
 
     export const spForm = superForm(formData, {
       
+      onChange: (e) => {
+        console.log('onChange', e)
+      },
       onError: (e) => {
         console.log('onError', e)
-        console.log('code is', e.result.error.code) // <== Typescript is wrong when offline!
+      },
+      onResult: (e) => {
+        console.log('onResult', e)
+      },
+      onUpdated: (e) => {
+        console.log('onUpdated', e)
+      },
+      onUpdate: (e) => {
+        console.log('onUpdate', e)
+      },
+      onSubmit: (e) => {
+        console.log('onSubmit', e)
       }
     });
 
@@ -19,6 +33,8 @@
 
   </script>
   
+<button type="button" on:click={() => spForm.reset()}>Reset</button>
+
 <form use:enhance method="POST">
     <input name="name" bind:value={$form.name} />
     <button type="submit">Save</button>

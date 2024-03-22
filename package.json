@@ -37,7 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sveltekit-superforms": "^2.10.5",
+		"sveltekit-superforms": "^2.10.6",
 		"zod": "^3.22.4"
 	}
 }
